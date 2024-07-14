@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ротатор рекламы</title>
+    <link rel="stylesheet" href="task.css">
+    <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
+</head>
+
+<style>
+    .rotator__case {
+        display: none;
+    }
+
+    .rotator__case_active {
+        display: inline;
+    }
+
+</style>
+
+<body>
+    <header class="header">
+        <div class="logo__container">
+          <a href="https://netology.ru/" class="logo__link"></a>
+        </div>
+        <h1 class="header__title">
+            <!-- Домашнее задание к занятию 2.1 «DOM». Ротатор рекламы. -->
+        </h1>
+    </header>
+
+    <main class="content">
+        <div class="card">
+            <p>
+                Я
+                <span class="rotator">
+                <span class="rotator__case rotator__case_active" data-speed="1000" data-color="red">Бог JS</span>
+                <span class="rotator__case" data-speed="2000" data-color="green">Лучший программист на земле</span>
+                <span class="rotator__case" data-speed="1000" data-color="#000">покорю этот мир</span>
+                <span class="rotator__case" data-speed="1000" data-color="red">учусь в Нетологии</span>
+                <span class="rotator__case" data-speed="5000" data-color="blue">счастливый как никто</span>
+                <span class="rotator__case" data-speed="200" data-color="gray">радуюсь жизни</span>
+              </span>
+            </p>
+        </div>
+    </main>
+    
+    <!-- <script src="task.js"></script> -->
+
+    <script>
+
+        // ************************************
+        // Пример работы с интервалом:
+        let array = ["a","b","c","d","e"];
+        let delay = 1000;
+
+       for(let i=0; i<array.length; i++) {
+            setTimeout(()=>{
+                 console.log(array[i]);
+            }, delay*i);
+        }
+
+        setInterval(() => {
+            // console.log('tick')
+            for(let i=0; i<array.length; i++) {
+            setTimeout(()=>{
+                 console.log(array[i]);
+            }, delay*i);
+        }
+        },  delay*array.length); 
+
+        // *************************************
+
+        // Находим список элементов "rotator__case"
+        let rotatorCases = document.querySelectorAll(".rotator__case");
+        // console.log(rotatorCases);
+        let interval = 1000;
+
+    //     const span = document.querySelector('.rotator__case');
+    //   spanColor = span.getAttribute('data-color');
+    //   console.log(spanColor);
+    //   span.style.color = spanColor
+
+        function rotator() {
+
+            for (let i=0; i < rotatorCases.length; i++) {
+                    setTimeout(() => {
+
+                    // Деактивируем активную запись:
+                    // 1) Находим активный элемент :
+                    let activElement = document.querySelector(".rotator__case_active");
+                    // 2) Деактивируем его:
+                    activElement.classList.toggle("rotator__case_active");
+
+                    // Делаем активным текущий элемент :
+                    rotatorCases[i].classList.toggle("rotator__case_active"); 
+                    // console.log(rotatorCase.textContent)
+
+                    // меняем цвет :                    
+                    rotatorCases[i].style.color = rotatorCases[i].getAttribute('data-color');
+
+                    // меняем время показа:
+                    // interval = rotatorCases[i].getAttribute('data-speed');
+                    
+                    }, interval*i);
+            } 
+        };
+        rotator();
+
+        setInterval(() => {
+            rotator();
+
+        },  interval*rotatorCases.length); 
+
+
+/*         setInterval(() => {
+
+            // Циклом активируем каждую секунду новый элемент 
+            for (let i=0; i < rotatorCases.length; i++) {
+                setTimeout(() => {
+
+                // Деактивируем активную запись:
+                // 1) Находим активный элемент :
+                let activElement = document.querySelector(".rotator__case_active");
+                // 2) Деактивируем его:
+                activElement.classList.toggle("rotator__case_active");
+
+                // Делаем активным текущий элемент :
+                rotatorCases[i].classList.toggle("rotator__case_active"); 
+                // console.log(rotatorCase.textContent)
+                
+                }, interval*i);
+            } 
+
+        },  interval*rotatorCases.length); */
+
+
+//  БЕСКОНЕЧНЫЙ ЦИКЛ ЧЕРЕЗ SETINTERVIL
+
+
+
+// *********************************************
+        // повторить с интервалом 2 секунды
+        // let timerId = setInterval(() => console.log('tick'), 500);
+
+        //     // остановить вывод через 5 секунд
+   /*      setInterval(() => {
+            // Деактивируем активную запись:
+            // 1) Находим активный элемент :
+            let activElement = document.querySelector(".rotator__case_active");
+            // 2) Деактивируем его:
+            activElement.classList.toggle("rotator__case_active");
+
+            // Делаем активным текущий элемент :
+            rotator1.classList.toggle("rotator__case_active");
+            
+        }, 1000); */
+        
+
+// ?******************************************
+
+/*         // Рассмотрим вариант для одного элемента
+        let rotator1 = rotatorCases[1];
+        console.log(rotator1);
+
+        // Показать в течении 1 секунды текст элемента
+        let timerId = setInterval(() => {
+            // Деактивируем активную запись:
+            // 1) Находим активный элемент :
+            let activElement = document.querySelector(".rotator__case_active");
+            // 2) Деактивируем его:
+            activElement.classList.toggle("rotator__case_active");
+
+            // Делаем активным текущий элемент :
+            rotator1.classList.toggle("rotator__case_active");
+            // Показываем содержимое:
+
+            // Показываем без задержки , устанавливаем "0" для интервала 
+            }, 0);
+
+            //  Через секунду прекращаем показ:
+            setTimeout(() => { clearInterval(timerId) }, 1000); */
+
+
+    </script>
+</body>
+</html>
