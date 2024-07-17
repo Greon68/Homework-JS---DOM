@@ -21,7 +21,7 @@
      
       if ( blockTop <= windowHeight ) {
           // Производим изменение цвета активного блока
-          block.classList.toggle('reveal_active')
+          block.classList.add('reveal_active')
         }
     }
 

@@ -17,14 +17,7 @@ function rotator() {
             activElement.classList.toggle("rotator__case_active");
 
             // Делаем активным текущий элемент :
-            rotatorCases[i].classList.toggle("rotator__case_active"); 
-            // console.log(rotatorCase.textContent)
-
-            // меняем цвет :                    
-            rotatorCases[i].style.color = rotatorCases[i].getAttribute('data-color');
-
-            // меняем время показа:
-            // interval = rotatorCases[i].getAttribute('data-speed');
+            rotatorCases[i].classList.toggle("rotator__case_active");     
             
             }, interval*i);
     } 
